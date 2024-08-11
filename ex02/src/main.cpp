@@ -4,6 +4,7 @@
 
 void test_orthodox_canonical_form()
 {
+    std::cout << "======== test orthodox canonical ========" << std::endl;
     MutantStack<int> mstack;
     mstack.push(5);
     mstack.push(4);
@@ -19,6 +20,7 @@ void test_orthodox_canonical_form()
 
 void test_subject()
 {
+    std::cout << "======== test subject ========" << std::endl;
     MutantStack<int> mstack;
     mstack.push(5);
     mstack.push(17);
@@ -44,6 +46,7 @@ void test_subject()
 
 void test_compare_with_list()
 {
+    std::cout << "======== test compare with list ========" << std::endl;
     MutantStack<int> mstack;
     mstack.push(1);
     mstack.push(2);
@@ -66,9 +69,35 @@ void test_compare_with_list()
     }
 }
 
+void test_compare_with_list_reverse()
+{
+    std::cout << "======== test compare with list (reverse) ========" << std::endl;
+    MutantStack<int> mstack;
+    mstack.push(1);
+    mstack.push(2);
+    mstack.push(3);
+    mstack.push(4);
+    mstack.push(5);
+    
+    std::list<int> lst;
+    lst.push_back(1);
+    lst.push_back(2);
+    lst.push_back(3);
+    lst.push_back(4);
+    lst.push_back(5);
+
+    for (MutantStack<int>::riterator mrit = mstack.rbegin(); mrit != mstack.rend(); mrit++) {
+        std::cout << *mrit << std::endl;
+    }
+    for (std::list<int>::reverse_iterator lrit = lst.rbegin(); lrit != lst.rend(); lrit++) {
+        std::cout << *lrit << std::endl;
+    }
+}
+
 int main()
 {
     test_orthodox_canonical_form();
     test_subject();
     test_compare_with_list();
+    test_compare_with_list_reverse();
 }
