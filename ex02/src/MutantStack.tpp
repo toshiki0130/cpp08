@@ -74,7 +74,6 @@ typename MutantStack<T>::const_riterator MutantStack<T>::rend() const
 {
     return std::stack<T>::c.rend();
 }
-#endif
 
 // ostream
 template <typename T>
@@ -89,3 +88,4 @@ std::ostream& operator<<(std::ostream& os, const MutantStack<T>& mstack)
     }
     return os;
 }
+#endif
