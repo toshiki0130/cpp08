@@ -104,11 +104,78 @@ void test_from_subject()
     std::cout << sp.longestSpan() << std::endl;
 }
 
+void test_full_exception()
+{
+    Span sp = Span(5);
+    try {
+        sp.addNumber(1);
+        sp.addNumber(2);
+        sp.addNumber(3);
+        sp.addNumber(4);
+        sp.addNumber(5);
+        sp.addNumber(6);
+    }
+    catch (Span::SpanFullException &e) {
+        std::cout << e.what() << std::endl;
+    }
+}
+
+void test_cannot_found_span()
+{
+    {
+        Span sp = Span(5);
+        try {
+            std::cout << sp.shortestSpan() << std::endl;
+        }
+        catch (Span::SpanNotFoundException &e) {
+            std::cout << e.what() << std::endl;
+        }
+    }
+    {
+        Span sp = Span(5);
+        try {
+            std::cout << sp.longestSpan() << std::endl;
+        }
+        catch (Span::SpanNotFoundException &e) {
+            std::cout << e.what() << std::endl;
+        }
+    }
+
+    {
+        Span sp = Span(5);
+        sp.addNumber(1);
+        try {
+            std::cout << sp.shortestSpan() << std::endl;
+        }
+        catch (Span::SpanNotFoundException &e) {
+            std::cout << e.what() << std::endl;
+        }
+    }
+    {
+        Span sp = Span(5);
+        sp.addNumber(1);
+        try {
+            std::cout << sp.longestSpan() << std::endl;
+        }
+        catch (Span::SpanNotFoundException &e) {
+            std::cout << e.what() << std::endl;
+        }
+    }
+}
+
 int main() {
     
+    std::cout << "---test_orthodox_canonical---" << std::endl;
     test_orthodox_canonical();
+    std::cout << "---test_add_number---" << std::endl;
     test_add_number(); 
+    std::cout << "---test_from_gpt---" << std::endl;
     test_from_gpt();
+    std::cout << "---test_from_subject---" << std::endl;
     test_from_subject();
+    std::cout << "---test_full_exception---" << std::endl;
+    test_full_exception();
+    std::cout << "---test_cannot_found_span---" << std::endl;
+    test_cannot_found_span();
     return 0;
 }
